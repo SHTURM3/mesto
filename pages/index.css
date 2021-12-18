@@ -1,2 +1,13 @@
 /* Подсключение стилей normalize */
 @import url(../vendor/normalize.css);
+
+/* Подключение шрифтов */
+@import url('../fonts/inter.css');
+
+/* Подключение стилей секции page */
+@import url('../blocks/page/page.css');
+
+/* Подключение стилей секции header */
+@import url('../blocks/header/header.css');
+@import url('../blocks/header/__logo/header__logo.css');
+@import url('../blocks/header/__line/header__line.css');
