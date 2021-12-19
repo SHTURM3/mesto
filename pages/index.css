@@ -26,3 +26,13 @@
 @import url('../blocks/profile/__description/profile__description.css');
 @import url('../blocks/profile/__add-button/profile__add-button.css');
 @import url('../blocks/profile/__add-button-img/profile__add-button-img.css');
+
+/* Подключение стилей секции elements */
+@import url('../blocks/elements/elements.css');
+@import url('../blocks/elements/__list/elements__list.css');
+@import url('../blocks/elements/__item/elements__item.css');
+@import url('../blocks/elements/__img/elements__img.css');
+@import url('../blocks/elements/__description/elements__description.css');
+@import url('../blocks/elements/__name/elements__name.css');
+@import url('../blocks/elements/__btn-like/elements__btn-like.css');
+@import url('../blocks/elements/__btn-like-img/elements__btn-like-img.css');
