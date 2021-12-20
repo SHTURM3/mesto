@@ -32,6 +32,7 @@
 @import url('../blocks/elements/__description/elements__description.css');
 @import url('../blocks/elements/__name/elements__name.css');
 @import url('../blocks/elements/__btn-like/elements__btn-like.css');
+@import url('../blocks/elements/__btn-like/_active/elements__btn-like_active.css');
 
 /* Подключение стилей секции footer */
 @import url('../blocks/footer/footer.css');

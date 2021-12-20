@@ -1,6 +1,11 @@
 let popup = document.querySelector('.popup')
 let popupOpen = document.querySelector('.profile__edit-button');
 let popupClose = document.querySelector('.popup__close-btn');
+let btnLike = document.querySelector('.elements__btn-like');
+
+btnLike.addEventListener ('click', function () {
+    btnLike.classList.toggle('elements__btn-like_active');
+})
 
 popupOpen.addEventListener ('click', function () {
     popup.classList.add('popup_opened');
@@ -9,6 +14,10 @@ popupOpen.addEventListener ('click', function () {
 popupClose.addEventListener ('click', function () {
     popup.classList.remove('popup_opened');
 });
+
+popup.addEventListener('submit', function () {
+    popup.classList.remove('popup_opened');
+})
 
 // Находим форму в DOM
 let formElement = document.querySelector('.popup__input');
