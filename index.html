@@ -11,23 +11,18 @@
     <div class="page">
         <header class="header">
             <img src="./images/logo.svg" alt="Логотип" class="header__logo">
-            <hr class="header__line">
         </header>
         <main class="content">
             <section class="profile">
-                <div class="profile__desc">
+                <div class="profile__wrapper">
                     <img src="./images/avatar.png" alt="Фотография пользователя" class="profile__avatar">
                     <div class="profile__info">
                         <h1 class="profile__name">Жак-Ив Кусто</h1>
-                        <button class="profile__edit-button">
-                            <img src="./images/edit-button.svg" class="profile__edit-button-img" alt="Кнопка редактирования профиля">
-                        </button>
+                        <button class="profile__edit-button"></button>
                         <p class="profile__description">Исследователь океана</p>
                     </div>
                 </div>
-                <button class="profile__add-button">
-                    <img src="./images/add-button.svg" class="profile__add-button-img" alt="Кнопка добавления фотографии">
-                </button>
+                <button class="profile__add-button"></button>
             </section>
             <section class="elements">
                 <ul class="elements__list">
@@ -35,54 +30,42 @@
                         <img src="./images/karachaevsk.png" alt="Карачаевск" class="elements__img">
                         <figcaption class="elements__description">
                             <h2 class="elements__name">Карачаевск</h2>
-                            <button class="elements__btn-like">
-                                <img class="elements__btn-like-img" src="./images/like.svg" alt="Кнопка Like">
-                            </button>
+                            <button class="elements__btn-like"></button>
                         </figcaption>
                     </li>
                     <li class="elements__item">
                         <img src="./images/elbrusrock.png" alt="Гора Эльбрус" class="elements__img">
                         <figcaption class="elements__description">
                             <h2 class="elements__name">Гора Эльбрус</h2>
-                            <button class="elements__btn-like">
-                                <img class="elements__btn-like-img" src="./images/like.svg" alt="Кнопка Like">
-                            </button>
+                            <button class="elements__btn-like"></button>
                         </figcaption>
                     </li>
                     <li class="elements__item">
                         <img src="./images/dombay.png" alt="Домбай" class="elements__img">
                         <figcaption class="elements__description">
                             <h2 class="elements__name">Домбай</h2>
-                            <button class="elements__btn-like">
-                                <img class="elements__btn-like-img" src="./images/like.svg" alt="Кнопка Like">
-                            </button>
+                            <button class="elements__btn-like"></button>
                         </figcaption>
                     </li>
                     <li class="elements__item">
                         <img src="./images/elbrusrock.png" alt="Гора Эльбрус" class="elements__img">
                         <figcaption class="elements__description">
                             <h2 class="elements__name">Гора Эльбрус</h2>
-                            <button class="elements__btn-like">
-                                <img class="elements__btn-like-img" src="./images/like.svg" alt="Кнопка Like">
-                            </button>
+                            <button class="elements__btn-like"></button>
                         </figcaption>
                     </li>
                     <li class="elements__item">
                         <img src="./images/dombay.png" alt="Домбай" class="elements__img">
                         <figcaption class="elements__description">
                             <h2 class="elements__name">Домбай</h2>
-                            <button class="elements__btn-like">
-                                <img class="elements__btn-like-img" src="./images/like.svg" alt="Кнопка Like">
-                            </button>
+                            <button class="elements__btn-like"></button>
                         </figcaption>
                     </li>
                     <li class="elements__item">
                         <img src="./images/karachaevsk.png" alt="Карачаево-Черкесия" class="elements__img">
                         <figcaption class="elements__description">
                             <h2 class="elements__name">Карачаево-Черкесия</h2>
-                            <button class="elements__btn-like">
-                                <img class="elements__btn-like-img" src="./images/like.svg" alt="Кнопка Like">
-                            </button>
+                            <button class="elements__btn-like"></button>
                         </figcaption>
                     </li>
                 </ul>
@@ -93,6 +76,19 @@
                 &copy; 2020. Mesto Russia
             </p>
         </footer>
+        <div class="popup">
+            <div class="popup__container">
+                <button class="popup__close-btn"></button>
+                <h2 class="popup__title">
+                    Редактировать профиль
+                </h2>
+                <form class="popup__input">
+                    <input type="text" value="Жак-Ив Кусто" placeholder="Имя" class="popup__input-text" id="name">
+                    <input type="text" value="Исследователь океана" placeholder="О себе" class="popup__input-text" id="about">
+                    <button class="popup__btn">Сохранить</button>
+                </form>
+            </div>
+        </div>
     </div>
     <script src="./pages/index.js"></script>
 </body>

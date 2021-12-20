@@ -1,6 +1,15 @@
 .elements__btn-like {
+    width: 22px;
+    background-image: url('../../../images/like.svg');
+    background-repeat: no-repeat;
+    background-position: center;
     border: none;
-    background-color: #fff;
+    background-color: transparent;
     padding: 0;
     height: 19px;
+}
+
+.elements__btn-like:hover {
+    background-image: url('../../../images/like-hover.svg');
+    transition: 0.5s linear;
 }
