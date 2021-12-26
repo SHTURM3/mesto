@@ -2,7 +2,7 @@
 @import url(../vendor/normalize.css);
 
 /* Подключение шрифтов */
-@import url('../fonts/inter.css');
+@import url('../vendor/fonts/inter.css');
 
 /* Подключение стилей секции page */
 @import url('../blocks/page/page.css');
@@ -45,5 +45,7 @@
 @import url('../blocks/popup/__title/popup__title.css');
 @import url('../blocks/popup/__input/popup__input.css');
 @import url('../blocks/popup/__input-text/popup__input-text.css');
+@import url('../blocks/popup/__input-text/_name/popup__input-text_name.css');
+@import url('../blocks/popup/__input-text/_about/popup__input-text_about.css');
 @import url('../blocks/popup/__btn/popup__btn.css');
 @import url('../blocks/popup/_opened/popup_opened.css');

@@ -7,6 +7,7 @@
     background-color: transparent;
     padding: 0;
     height: 19px;
+    cursor: pointer;
 }
 
 .elements__btn-like:hover {
