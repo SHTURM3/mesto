@@ -26,48 +26,7 @@
             </section>
             <section class="elements">
                 <ul class="elements__list">
-                    <li class="elements__item">
-                        <img src="./images/karachaevsk.png" alt="Карачаевск" class="elements__img">
-                        <div class="elements__description">
-                            <h2 class="elements__name">Карачаевск</h2>
-                            <button class="elements__btn-like"></button>
-                        </div>
-                    </li>
-                    <li class="elements__item">
-                        <img src="./images/elbrusrock.png" alt="Гора Эльбрус" class="elements__img">
-                        <div class="elements__description">
-                            <h2 class="elements__name">Гора Эльбрус</h2>
-                            <button class="elements__btn-like"></button>
-                        </div>
-                    </li>
-                    <li class="elements__item">
-                        <img src="./images/dombay.png" alt="Домбай" class="elements__img">
-                        <div class="elements__description">
-                            <h2 class="elements__name">Домбай</h2>
-                            <button class="elements__btn-like"></button>
-                        </div>
-                    </li>
-                    <li class="elements__item">
-                        <img src="./images/elbrusrock.png" alt="Гора Эльбрус" class="elements__img">
-                        <div class="elements__description">
-                            <h2 class="elements__name">Гора Эльбрус</h2>
-                            <button class="elements__btn-like"></button>
-                        </div>
-                    </li>
-                    <li class="elements__item">
-                        <img src="./images/dombay.png" alt="Домбай" class="elements__img">
-                        <div class="elements__description">
-                            <h2 class="elements__name">Домбай</h2>
-                            <button class="elements__btn-like"></button>
-                        </div>
-                    </li>
-                    <li class="elements__item">
-                        <img src="./images/karachaevsk.png" alt="Карачаево-Черкесия" class="elements__img">
-                        <div class="elements__description">
-                            <h2 class="elements__name">Карачаево-Черкесия</h2>
-                            <button class="elements__btn-like"></button>
-                        </div>
-                    </li>
+                   
                 </ul>
             </section>
         </main>
@@ -76,6 +35,9 @@
                 &copy; 2020. Mesto Russia
             </p>
         </footer>
+
+        <!-- Попап - редактирование имени и описания пользователя -->
+
         <div class="popup">
             <div class="popup__container">
                 <button class="popup__close-btn"></button>
@@ -89,7 +51,52 @@
                 </form>
             </div>
         </div>
+
+        <!-- Попап - добавление карточек мест -->
+
+        <div class="popup-card">
+            <div class="popup-card__container">
+                <button class="popup-card__close-btn"></button>
+                <h2 class="popup-card__title">
+                    Новое место
+                </h2>
+                <form class="popup-card__input">
+                    <input type="text" placeholder="Название" class="popup-card__input-text popup-card__input-text_name">
+                    <input type="text" placeholder="Ссылка на картинку" class="popup-card__input-text popup-card__input-text_link">
+                    <button class="popup-card__btn">Создать</button>
+                </form>
+            </div>
+        </div>
+
     </div>
+
+    <!-- template-элемент карточек мест -->
+
+    <template class="elements-template">
+        <li class="elements__item">
+            <img src="" alt="" class="elements__img">
+            <button type="button" class="elements__trash-btn"></button>
+            <div class="elements__description">
+                <h2 class="elements__name"></h2>
+                <button type="button" class="elements__btn-like"></button>
+            </div>
+        </li>
+    </template>
+
+    <!-- попап с картинкой -->
+
+    <div class="popup-img">
+        <div class="popup-img__container">
+            <div class="popup-img__container">
+                <button class="popup-img__btn-close"></button>
+                <img src="" alt="" class="popup-img__pic">
+                <figcaption class="popup-img__desc">
+                        
+                </figcaption>  
+            </div>
+        </div>   
+    </div>
+
     <script src="./script/index.js"></script>
 </body>
 </html>

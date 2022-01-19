@@ -1,0 +1,11 @@
+.popup-card__input-text {
+    max-width: 358px;
+    border: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    margin-bottom: 30px;
+    padding-bottom: 13px;
+}
+
+.popup-card__input-text:last-of-type {
+    margin-bottom: 48px;
+}

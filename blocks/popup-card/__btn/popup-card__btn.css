@@ -1,0 +1,13 @@
+.popup-card__btn {
+    color: #fff;
+    border: none;
+    border-radius: 2px;
+    background-color: #000;
+    padding: 14px 0;
+    cursor: pointer;
+}
+
+.popup-card__btn:hover {
+    opacity: 0.8;
+    transition: 0.5s linear;
+}
