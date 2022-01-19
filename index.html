@@ -26,7 +26,18 @@
             </section>
             <section class="elements">
                 <ul class="elements__list">
-                   
+                   <!-- template-элемент карточек мест -->
+
+                    <template class="elements-template">
+                        <li class="elements__item">
+                            <img src="" alt="" class="elements__img">
+                            <button type="button" class="elements__trash-btn"></button>
+                            <div class="elements__description">
+                                <h2 class="elements__name"></h2>
+                                <button type="button" class="elements__btn-like"></button>
+                            </div>
+                        </li>
+                    </template>
                 </ul>
             </section>
         </main>
@@ -70,29 +81,18 @@
 
     </div>
 
-    <!-- template-элемент карточек мест -->
-
-    <template class="elements-template">
-        <li class="elements__item">
-            <img src="" alt="" class="elements__img">
-            <button type="button" class="elements__trash-btn"></button>
-            <div class="elements__description">
-                <h2 class="elements__name"></h2>
-                <button type="button" class="elements__btn-like"></button>
-            </div>
-        </li>
-    </template>
-
-    <!-- попап с картинкой -->
+    <!-- Попап - просмотр картинки -->
 
     <div class="popup-img">
         <div class="popup-img__container">
             <div class="popup-img__container">
                 <button class="popup-img__btn-close"></button>
-                <img src="" alt="" class="popup-img__pic">
-                <figcaption class="popup-img__desc">
-                        
-                </figcaption>  
+                <figure>
+                    <img src="#" alt="Описание изображения" class="popup-img__pic">
+                    <figcaption class="popup-img__desc">
+                            
+                    </figcaption> 
+                </figure>    
             </div>
         </div>   
     </div>
