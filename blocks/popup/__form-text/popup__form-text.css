@@ -1,4 +1,4 @@
-.popup-card__input-text {
+.popup__form-text {
     max-width: 358px;
     border: none;
     border-bottom: 1px solid rgba(0, 0, 0, 0.2);
@@ -6,6 +6,6 @@
     padding-bottom: 13px;
 }
 
-.popup-card__input-text:last-of-type {
+.popup__form-text:last-of-type {
     margin-bottom: 48px;
 }
