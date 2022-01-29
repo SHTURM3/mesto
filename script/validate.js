@@ -37,7 +37,7 @@
   // Функция проверки валидности
 
   function validateInput(form, input, classes) {
-    const errorContainer = form.querySelector(`.${input.id}-error`);
+    const errorContainer = form.querySelector('#' + input.id + '-error');
     if(input.validity.valid){
         hideError(input, errorContainer, classes);
     } else {

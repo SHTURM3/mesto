@@ -56,9 +56,9 @@
                 </h2>
                 <form class="popup__form popup__form_profile" novalidate>
                     <input id="input__name" type="text" placeholder="Имя" class="popup__input popup__input_profile-name" minlength="2" maxlength="40" required>
-                    <span class="popup__error input__name-error"></span>
+                    <span class="popup__error" id="input__name-error"></span>
                     <input id="input__about" type="text" placeholder="О себе" class="popup__input popup__input_profile-about" minlength="2" maxlength="200" required>
-                    <span class="popup__error input__about-error"></span>
+                    <span class="popup__error" id="input__about-error"></span>
                     <button class="popup__button popup__button_profile">Сохранить</button>
                 </form>
             </div>
@@ -74,9 +74,9 @@
                 </h2>
                 <form class="popup__form popup__form_card" novalidate>
                     <input id="input__call" type="text" placeholder="Название" class="popup__input popup__input_card-name" minlength="2" maxlength="30" required>
-                    <span class="popup__error input__call-error"></span>
+                    <span class="popup__error" id="input__call-error"></span>
                     <input id="input__link" type="url" placeholder="Ссылка на картинку" class="popup__input popup__input_card-link" required>
-                    <span class="popup__error input__link-error"></span>
+                    <span class="popup__error" id="input__link-error"></span>
                     <button class="popup__button popup__button_card">Создать</button>
                 </form>
             </div>
