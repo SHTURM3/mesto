@@ -26,8 +26,7 @@
             </section>
             <section class="elements">
                 <ul class="elements__list">
-                   <!-- template-элемент карточек мест -->
-
+                   <!-- template - элемент карточек мест -->
                     <template class="elements-template">
                         <li class="elements__item">
                             <img src="#" alt="Описание карточки" class="elements__img">
@@ -47,43 +46,47 @@
             </p>
         </footer>
 
-        <!-- Попап - редактирование имени и описания пользователя -->
+        <!-- Popup - редактирование имени и описания пользователя -->
 
         <div class="popup popup_profile">
-            <div class="popup__container">
-                <button class="popup__close-btn"></button>
-                <h2 class="popup__title">
+            <div class="popup__container popup__container_profile">
+                <button class="popup__close-btn popup__close-btn_profile"></button>
+                <h2 class="popup__title popup__title_profile">
                     Редактировать профиль
                 </h2>
-                <form class="popup__form">
-                    <input type="text" placeholder="Имя" class="popup__form-text popup__form-text_name">
-                    <input type="text" placeholder="О себе" class="popup__form-text popup__form-text_about">
-                    <button class="popup__btn">Сохранить</button>
+                <form class="popup__form popup__form_profile" novalidate>
+                    <input id="input__name" type="text" placeholder="Имя" class="popup__input popup__input_profile-name" minlength="2" maxlength="40" required>
+                    <span class="popup__error input__name-error"></span>
+                    <input id="input__about" type="text" placeholder="О себе" class="popup__input popup__input_profile-about" minlength="2" maxlength="200" required>
+                    <span class="popup__error input__about-error"></span>
+                    <button class="popup__button popup__button_profile">Сохранить</button>
                 </form>
             </div>
         </div>
 
-        <!-- Попап - добавление карточек мест -->
+        <!-- Popup - добавление карточек мест -->
 
-        <div class="popup-card">
-            <div class="popup-card__container">
-                <button class="popup-card__close-btn"></button>
-                <h2 class="popup-card__title">
+        <div class="popup popup_card">
+            <div class="popup__container popup__container_card">
+                <button class="popup__close-btn popup__close-btn_card"></button>
+                <h2 class="popup__title popup__title_card">
                     Новое место
                 </h2>
-                <form class="popup-card__form">
-                    <input type="text" placeholder="Название" class="popup-card__form-text popup-card__form-text_name">
-                    <input type="text" placeholder="Ссылка на картинку" class="popup-card__form-text popup-card__form-text_link">
-                    <button class="popup-card__btn">Создать</button>
+                <form class="popup__form popup__form_card" novalidate>
+                    <input id="input__call" type="text" placeholder="Название" class="popup__input popup__input_card-name" minlength="2" maxlength="30" required>
+                    <span class="popup__error input__call-error"></span>
+                    <input id="input__link" type="url" placeholder="Ссылка на картинку" class="popup__input popup__input_card-link" required>
+                    <span class="popup__error input__link-error"></span>
+                    <button class="popup__button popup__button_card">Создать</button>
                 </form>
             </div>
         </div>
 
     </div>
 
-    <!-- Попап - просмотр картинки -->
+    <!-- Popup - просмотр картинки -->
 
-    <div class="popup-img">
+    <div class="popup popup-img">
         <div class="popup-img__container">
             <div class="popup-img__container">
                 <button class="popup-img__btn-close"></button>
@@ -96,7 +99,7 @@
             </div>
         </div>   
     </div>
-
+    <script src="./script/validate.js"></script>
     <script src="./script/index.js"></script>
 </body>
 </html>

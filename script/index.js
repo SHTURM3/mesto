@@ -2,23 +2,23 @@
 
 const profilePopup = document.querySelector('.popup_profile')
 const popupOpenBtn = document.querySelector('.profile__edit-button');
-const popupCloseBtn = document.querySelector('.popup__close-btn');
+const popupCloseBtn = document.querySelector('.popup__close-btn_profile');
 
-const profilePopupForm = document.querySelector('.popup__form');
-const nameInput = document.querySelector('.popup__form-text_name');
-const jobInput = document.querySelector('.popup__form-text_about');
+const profilePopupForm = document.querySelector('.popup__form_profile');
+const nameInput = document.querySelector('.popup__input_profile-name');
+const jobInput = document.querySelector('.popup__input_profile-about');
 
 const name = document.querySelector('.profile__name');
 const job = document.querySelector('.profile__description');
 
 // Переменные для добавления(редактирования) новых карточек на старницу
-const popupCard = document.querySelector('.popup-card');
+const popupCard = document.querySelector('.popup_card');
 const popupCardOpenBtn = document.querySelector('.profile__add-button');
-const popupCardCloseBtn = document.querySelector('.popup-card__close-btn');
+const popupCardCloseBtn = document.querySelector('.popup__close-btn_card');
 
-const formCard = document.querySelector('.popup-card__form');
-const namePlaceInput = document.querySelector('.popup-card__form-text_name');
-const linkPlaceInput = document.querySelector('.popup-card__form-text_link');
+const formCard = document.querySelector('.popup__form_card');
+const namePlaceInput = document.querySelector('.popup__input_card-name');
+const linkPlaceInput = document.querySelector('.popup__input_card-link');
 
 // Переменные для popup с картинкой
 
@@ -113,11 +113,27 @@ function createNewCard(element) {
 
 function openPopup(popup) {
   popup.classList.add('popup_opened');
+  document.addEventListener('click', closeAllPopupsOverlay); 
+  document.addEventListener('keydown', closeAllPopupsEscape);
 }
 
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
+  document.removeEventListener('click', closeAllPopupsOverlay); 
+  document.removeEventListener('keydown', closeAllPopupsEscape);
 }
+
+function closeAllPopupsOverlay (element) {
+  if (element.target.classList.contains('popup')) {
+    closePopup(document.querySelector('.popup_opened'));
+  }
+}
+
+function closeAllPopupsEscape(evt) {
+  if (evt.key === 'Escape') {
+    closePopup(document.querySelector('.popup_opened'));
+  }
+};
 
 // Функции редактирования попапа формы профиля
 
@@ -135,6 +151,8 @@ function submitProfileForm(evt) {
     
     closePopup(profilePopup);
 }
+
+
 
 // Обработчики событий попапа редактирования информации о пользователе
 

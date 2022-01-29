@@ -39,34 +39,37 @@
 @import url('../blocks/footer/footer.css');
 @import url('../blocks/footer/__copyright/footer__copyright.css');
 
-/* Подключение стилей секции popup */
+/* Подключение стилей popup редактирование профиля и добавления карточки */
 @import url('../blocks/popup/popup.css');
 @import url('../blocks/popup/_profile/popup_profile.css');
-@import url('../blocks/popup/__container/popup__container.css');
-@import url('../blocks/popup/__close-btn/popup__close-btn.css');
-@import url('../blocks/popup/__title/popup__title.css');
-@import url('../blocks/popup/__form/popup__form.css');
-@import url('../blocks/popup/__form-text/popup__form-text.css');
-@import url('../blocks/popup/__form-text/_name/popup__form-text_name.css');
-@import url('../blocks/popup/__form-text/_about/popup__form-text_about.css');
-@import url('../blocks/popup/__btn/popup__btn.css');
+@import url('../blocks/popup/_card/popup_card.css');
 @import url('../blocks/popup/_opened/popup_opened.css');
+@import url('../blocks/popup/__container/popup__container.css');
+@import url('../blocks/popup/__container/_profile/popup__container_profile.css');
+@import url('../blocks/popup/__container/_card/popup__container_card.css');
+@import url('../blocks/popup/__close-btn/popup__close-btn.css');
+@import url('../blocks/popup/__close-btn/_profile/popup__close-btn_profile.css');
+@import url('../blocks/popup/__close-btn/_card/popup__close-btn_card.css');
+@import url('../blocks/popup/__title/popup__title.css');
+@import url('../blocks/popup/__title/_profile/popup__title_profile.css');
+@import url('../blocks/popup/__title/_card/popup__title_card.css');
+@import url('../blocks/popup/__form/popup__form.css');
+@import url('../blocks/popup/__form/_profile/popup__form_profile.css');
+@import url('../blocks/popup/__form/_card/popup__form_card.css');
+@import url('../blocks/popup/__input/popup__input.css');
+@import url('../blocks/popup/__input/_type_error/popup__input_type_error.css');
+@import url('../blocks/popup/__input/_profile-name/popup__input_profile-name.css');
+@import url('../blocks/popup/__input/_profile-about/popup__input_profile-about.css');
+@import url('../blocks/popup/__input/_card-name/popup__input_card-name.css');
+@import url('../blocks/popup/__input/_card-link/popup__input_card-link.css');
+@import url('../blocks/popup/__error/popup__error.css');
+@import url('../blocks/popup/__error/_visible/popup__error_visible.css');
+@import url('../blocks/popup/__button/popup__button.css');
+@import url('../blocks/popup/__button/_disabled/popup__button_disabled.css');
+@import url('../blocks/popup/__button/_profile/popup__button_profile.css');
+@import url('../blocks/popup/__button/_card/popup__button_card.css');
 
-/* Подключение стилей секции popup-card */
-
-@import url('../blocks/popup-card/popup-card.css');
-@import url('../blocks/popup-card/__container/popup-card__container.css');
-@import url('../blocks/popup-card/__close-btn/popup-card__close-btn.css');
-@import url('../blocks/popup-card/__title/popup-card__title.css');
-@import url('../blocks/popup-card/__form/popup-card__form.css');
-@import url('../blocks/popup-card/__form-text/popup-card__form-text.css');
-@import url('../blocks/popup-card/__form-text/_name/popup-card__form-text_name.css');
-@import url('../blocks/popup-card/__form-text/_link/popup-card__form-text_link.css');
-@import url('../blocks/popup-card/__btn/popup-card__btn.css');
-@import url('../blocks/popup-card/_opened/popup-card_opened.css');
-
-/* Подключение стилей секции popup-img */
-
+/* Подключение стилей секции popup просмотра изображения */
 @import url('../blocks/popup-img/popup-img.css');
 @import url('../blocks/popup-img/_opened/popup-img_opened.css');
 @import url('../blocks/popup-img/__container/popup-img__container.css');

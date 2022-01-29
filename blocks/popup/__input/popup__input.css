@@ -1,11 +1,7 @@
-.popup__form-text {
+.popup__input {
     max-width: 358px;
     border: none;
     border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-    margin-bottom: 30px;
+    margin-bottom: 5px;
     padding-bottom: 13px;
-}
-
-.popup__form-text:last-of-type {
-    margin-bottom: 48px;
 }
