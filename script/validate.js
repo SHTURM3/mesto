@@ -37,8 +37,7 @@
   // Функция проверки валидности
 
   function validateInput(form, input, classes) {
-    const errorContainer = form.querySelector('#' + `${input.id}` + '-error');
-    const isInputValid =
+    const errorContainer = form.querySelector(`#${input.id}-error`);
     if(input.validity.valid) {
         hideError(input, errorContainer, classes);
     } else {
@@ -51,7 +50,7 @@
       const forms = document.querySelectorAll(formSelector);
       forms.forEach(form => {
         form.addEventListener('submit', submitForm);
-        const inputs = document.querySelectorAll(inputSelector);
+        const inputs = form.querySelectorAll(inputSelector);
         inputs.forEach(input => {
           input.addEventListener('input', () => {
             validateInput(form, input, rest);

@@ -20,6 +20,8 @@ const formCard = document.querySelector('.popup__form_card');
 const namePlaceInput = document.querySelector('.popup__input_card-name');
 const linkPlaceInput = document.querySelector('.popup__input_card-link');
 
+const buttonCardSubmit = document.querySelector('.popup__button_card'); 
+
 // Переменные для popup с картинкой
 
 const popupImg = document.querySelector('.popup-img');
@@ -59,20 +61,20 @@ const initialCards = [
   ];
 
   const addCardToContainer = function(element) {
-                    const item = createNewCard(element);
-                    elementsList.prepend(item);
-                  }
+    const item = createNewCard(element);
+    elementsList.prepend(item);
+  }
 
   initialCards.forEach(addCardToContainer);
 
   function submitFormCardHandler(event) {
     event.preventDefault();
-  
+
     addCardToContainer ({
       name: namePlaceInput.value,
       link: linkPlaceInput.value
     });
-    
+
     formCard.reset();
     closePopup(popupCard);
   }
@@ -113,6 +115,8 @@ function openPopup(popup) {
   popup.classList.add('popup_opened');
   popup.addEventListener('click', closeAllPopupsOverlay); 
   document.addEventListener('keydown', closeAllPopupsEscape);
+  buttonCardSubmit.setAttribute('disabled', true);
+  buttonCardSubmit.classList.add('popup__button_disabled');
 };
 
 function closePopup(popup) {
