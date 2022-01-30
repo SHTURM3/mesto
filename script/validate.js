@@ -6,7 +6,7 @@
 
   // Функция показа ошибки
 
-  function showError(input, errorContainer, {inputErrorClass, errorClass}) {
+  function showError(input, errorContainer, { inputErrorClass, errorClass }) {
     input.classList.add(inputErrorClass);
     errorContainer.classList.add(errorClass);
     errorContainer.textContent = input.validationMessage;
@@ -14,7 +14,7 @@
 
   // Функция скрытия ошибки
 
-  function hideError(input, errorContainer, {inputErrorClass, errorClass}) {
+  function hideError(input, errorContainer, { inputErrorClass, errorClass }) {
     input.classList.remove(inputErrorClass);
     errorContainer.classList.remove(errorClass);
     errorContainer.textContent = '';
@@ -22,7 +22,7 @@
 
   // Функция активации и деактивации кнопки отпраки формы
 
-  function toggletButton (form, {submitButtonSelector, inactiveButtonClass}) {
+  function toggletButton (form, { submitButtonSelector, inactiveButtonClass }) {
         const button = form.querySelector(submitButtonSelector);
         const isFormValid = form.checkValidity();
         if (isFormValid) {
@@ -37,8 +37,9 @@
   // Функция проверки валидности
 
   function validateInput(form, input, classes) {
-    const errorContainer = form.querySelector('#' + input.id + '-error');
-    if(input.validity.valid){
+    const errorContainer = form.querySelector('#' + `${input.id}` + '-error');
+    const isInputValid =
+    if(input.validity.valid) {
         hideError(input, errorContainer, classes);
     } else {
         showError(input, errorContainer, classes);
@@ -46,15 +47,15 @@
     toggletButton(form, classes);
   };
 
-  function enableValidation({formSelector, inputSelector, ...rest}) {
+  function enableValidation({ formSelector, inputSelector, ...rest }) {
       const forms = document.querySelectorAll(formSelector);
       forms.forEach(form => {
-            form.addEventListener('submit', submitForm);
-            const inputs = document.querySelectorAll(inputSelector);
-            inputs.forEach(input => {
-            input.addEventListener('input', function() {
-                validateInput(form, input, rest);
-            });
+        form.addEventListener('submit', submitForm);
+        const inputs = document.querySelectorAll(inputSelector);
+        inputs.forEach(input => {
+          input.addEventListener('input', () => {
+            validateInput(form, input, rest);
+          });
         });
         toggletButton(form, rest);
       });

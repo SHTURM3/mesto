@@ -1,8 +1,8 @@
 // Переменные для формы редактирование данных пользователя
 
+const popups = document.querySelectorAll('.popup');
 const profilePopup = document.querySelector('.popup_profile')
 const popupOpenBtn = document.querySelector('.profile__edit-button');
-const popupCloseBtn = document.querySelector('.popup__close-btn_profile');
 
 const profilePopupForm = document.querySelector('.popup__form_profile');
 const nameInput = document.querySelector('.popup__input_profile-name');
@@ -12,9 +12,9 @@ const name = document.querySelector('.profile__name');
 const job = document.querySelector('.profile__description');
 
 // Переменные для добавления(редактирования) новых карточек на старницу
+
 const popupCard = document.querySelector('.popup_card');
 const popupCardOpenBtn = document.querySelector('.profile__add-button');
-const popupCardCloseBtn = document.querySelector('.popup__close-btn_card');
 
 const formCard = document.querySelector('.popup__form_card');
 const namePlaceInput = document.querySelector('.popup__input_card-name');
@@ -23,7 +23,7 @@ const linkPlaceInput = document.querySelector('.popup__input_card-link');
 // Переменные для popup с картинкой
 
 const popupImg = document.querySelector('.popup-img');
-const closePopupImgBtn = document.querySelector('.popup-img__btn-close');
+const popupImgPicture = popupImg.querySelector('.popup-img__pic');
 
 // Шесть карточек "из коробки"
 
@@ -65,7 +65,7 @@ const initialCards = [
 
   initialCards.forEach(addCardToContainer);
 
-  function formCardSubmitHandler(event) {
+  function submitFormCardHandler(event) {
     event.preventDefault();
   
     addCardToContainer ({
@@ -99,8 +99,6 @@ function createNewCard(element) {
     elementsImg.addEventListener('click', function() {
       openPopup(popupImg);
 
-      const popupImgPicture = popupImg.querySelector('.popup-img__pic');
-
       popupImgPicture.src = element.link;
       popupImgPicture.alt = element.name;
       popupImg.querySelector('.popup-img__desc').textContent = element.name;
@@ -113,15 +111,26 @@ function createNewCard(element) {
 
 function openPopup(popup) {
   popup.classList.add('popup_opened');
-  document.addEventListener('click', closeAllPopupsOverlay); 
+  popup.addEventListener('click', closeAllPopupsOverlay); 
   document.addEventListener('keydown', closeAllPopupsEscape);
-}
+};
 
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
-  document.removeEventListener('click', closeAllPopupsOverlay); 
+  popup.removeEventListener('click', closeAllPopupsOverlay); 
   document.removeEventListener('keydown', closeAllPopupsEscape);
-}
+};
+
+popups.forEach((popup) => {
+  popup.addEventListener('click', (evt) => {
+      if (evt.target.classList.contains('popup_opened')) {
+          closePopup(popup);
+      }
+      if (evt.target.classList.contains('popup__close-btn')) {
+        closePopup(popup);
+      }
+  })
+});
 
 function closeAllPopupsOverlay (element) {
   if (element.target.classList.contains('popup')) {
@@ -160,23 +169,12 @@ profilePopupForm.addEventListener('submit', submitProfileForm);
 
 popupOpenBtn.addEventListener('click', windowOpened);
 
-popupCloseBtn.addEventListener('click', () => {
-  closePopup(profilePopup);
-});
-
 // Обработчики событий редактирования карточек мест
 
-formCard.addEventListener('submit', formCardSubmitHandler);
+formCard.addEventListener('submit', submitFormCardHandler);
 
 popupCardOpenBtn.addEventListener('click', () => {
   openPopup(popupCard);
 });
 
-popupCardCloseBtn.addEventListener('click', () => {
-  closePopup(popupCard);
-});
-
-closePopupImgBtn.addEventListener('click', () => {
-  closePopup(popupImg);
-});
 
