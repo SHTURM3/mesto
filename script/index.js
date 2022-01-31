@@ -15,6 +15,7 @@ const job = document.querySelector('.profile__description');
 
 const popupCard = document.querySelector('.popup_card');
 const popupCardOpenBtn = document.querySelector('.profile__add-button');
+const popupCardSubmitBtn = document.querySelector('.popup__button_card');
 
 const formCard = document.querySelector('.popup__form_card');
 const namePlaceInput = document.querySelector('.popup__input_card-name');
@@ -68,12 +69,12 @@ const initialCards = [
 
   function submitFormCardHandler(event) {
     event.preventDefault();
-
     addCardToContainer ({
       name: namePlaceInput.value,
       link: linkPlaceInput.value
     });
-
+    popupCardSubmitBtn.setAttribute('disabled', true);
+    popupCardSubmitBtn.classList.add('popup__button_disabled');
     formCard.reset();
     closePopup(popupCard);
   }
@@ -111,11 +112,8 @@ function createNewCard(element) {
 // Функции для открытия(закрытия) попапов
 
 function openPopup(popup) {
-  const button = popup.querySelector('.popup__button');
   popup.classList.add('popup_opened'); 
   document.addEventListener('keydown', closeAllPopupsEscape);
-  button.setAttribute('disabled', true);
-  button.classList.add('popup__button_disabled');
 };
 
 function closePopup(popup) {
