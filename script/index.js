@@ -141,7 +141,7 @@ function closeAllPopupsEscape(evt) {
 
 // Функции редактирования попапа формы профиля
 
-function windowOpened() {
+function openWindow() {
     nameInput.value = name.textContent;
     jobInput.value = job.textContent;
     openPopup(profilePopup);
@@ -162,7 +162,7 @@ function submitProfileForm(evt) {
 
 profilePopupForm.addEventListener('submit', submitProfileForm);
 
-popupOpenBtn.addEventListener('click', windowOpened);
+popupOpenBtn.addEventListener('click', openWindow);
 
 // Обработчики событий редактирования карточек мест
 
