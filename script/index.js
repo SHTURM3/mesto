@@ -18,14 +18,13 @@ const popupCardOpenBtn = document.querySelector('.profile__add-button');
 
 const formCard = document.querySelector('.popup__form_card');
 const namePlaceInput = document.querySelector('.popup__input_card-name');
-const linkPlaceInput = document.querySelector('.popup__input_card-link');
-
-const buttonCardSubmit = document.querySelector('.popup__button_card'); 
+const linkPlaceInput = document.querySelector('.popup__input_card-link'); 
 
 // Переменные для popup с картинкой
 
 const popupImg = document.querySelector('.popup-img');
 const popupImgPicture = popupImg.querySelector('.popup-img__pic');
+const popupImgDescription = popupImg.querySelector('.popup-img__desc');
 
 // Шесть карточек "из коробки"
 
@@ -103,7 +102,7 @@ function createNewCard(element) {
 
       popupImgPicture.src = element.link;
       popupImgPicture.alt = element.name;
-      popupImg.querySelector('.popup-img__desc').textContent = element.name;
+      popupImgDescription.textContent = element.name;
     })
 
     return templateCopy;
@@ -112,16 +111,15 @@ function createNewCard(element) {
 // Функции для открытия(закрытия) попапов
 
 function openPopup(popup) {
-  popup.classList.add('popup_opened');
-  popup.addEventListener('click', closeAllPopupsOverlay); 
+  const button = popup.querySelector('.popup__button');
+  popup.classList.add('popup_opened'); 
   document.addEventListener('keydown', closeAllPopupsEscape);
-  buttonCardSubmit.setAttribute('disabled', true);
-  buttonCardSubmit.classList.add('popup__button_disabled');
+  button.setAttribute('disabled', true);
+  button.classList.add('popup__button_disabled');
 };
 
 function closePopup(popup) {
-  popup.classList.remove('popup_opened');
-  popup.removeEventListener('click', closeAllPopupsOverlay); 
+  popup.classList.remove('popup_opened'); 
   document.removeEventListener('keydown', closeAllPopupsEscape);
 };
 
@@ -136,11 +134,6 @@ popups.forEach((popup) => {
   })
 });
 
-function closeAllPopupsOverlay (element) {
-  if (element.target.classList.contains('popup')) {
-    closePopup(document.querySelector('.popup_opened'));
-  }
-}
 
 function closeAllPopupsEscape(evt) {
   if (evt.key === 'Escape') {
