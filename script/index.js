@@ -1,3 +1,7 @@
+import { Card } from './Card.js';
+import { FormValidator } from './FormValidator.js';
+import { openPopup, closePopup } from './utils.js';
+
 // Переменные для формы редактирование данных пользователя
 
 const popups = document.querySelectorAll('.popup');
@@ -21,17 +25,15 @@ const formCard = document.querySelector('.popup__form_card');
 const namePlaceInput = document.querySelector('.popup__input_card-name');
 const linkPlaceInput = document.querySelector('.popup__input_card-link'); 
 
-// Переменные для popup с картинкой
+// Переменая template карточки
 
-const popupImg = document.querySelector('.popup-img');
-const popupImgPicture = popupImg.querySelector('.popup-img__pic');
-const popupImgDescription = popupImg.querySelector('.popup-img__desc');
+const cardTemplateSelector = '.elements-template';
 
-// Шесть карточек "из коробки"
+// Переменная для открытия изображения
 
-const elementsList = document.querySelector('.elements__list');
-const elementsTemplate = document.querySelector('.elements-template').content;
-const elementsItem = elementsTemplate.querySelector('.elements__item');
+export const popupImg = document.querySelector('.popup-img');
+export const popupImgPicture = popupImg.querySelector('.popup-img__pic');
+export const popupImgDescription = popupImg.querySelector('.popup-img__desc');
 
 const initialCards = [
     {
@@ -60,66 +62,27 @@ const initialCards = [
     }
   ];
 
-  const addCardToContainer = function(element) {
-    const item = createNewCard(element);
-    elementsList.prepend(item);
-  }
+  const renderCard = (data) => {
+    const card = new Card(data, cardTemplateSelector);
+    const cardElement = card.getCardElement();
 
-  initialCards.forEach(addCardToContainer);
+    document.querySelector('.elements__list').prepend(cardElement);
+  };
+
+  initialCards.forEach(renderCard);
 
   function submitFormCardHandler(event) {
     event.preventDefault();
-    addCardToContainer ({
+    renderCard ({
       name: namePlaceInput.value,
       link: linkPlaceInput.value
     });
-    popupCardSubmitBtn.setAttribute('disabled', true);
+    popupCardSubmitBtn.disabled = true;
     popupCardSubmitBtn.classList.add('popup__button_disabled');
     formCard.reset();
     closePopup(popupCard);
   }
 
-function createNewCard(element) {
-    const templateCopy = elementsItem.cloneNode(true);
-    const elementsName = templateCopy.querySelector('.elements__name');
-    const elementsImg = templateCopy.querySelector('.elements__img');
-    const likeBtn = templateCopy.querySelector('.elements__btn-like');
-    const delBtn = templateCopy.querySelector('.elements__trash-btn');
-
-    elementsName.textContent = element.name;
-    elementsImg.alt = element.name;
-    elementsImg.src = element.link;
-
-    delBtn.addEventListener('click', function() {
-      templateCopy.remove();
-    });
-
-    likeBtn.addEventListener ('click', function() {
-      likeBtn.classList.toggle('elements__btn-like_active');
-    });
-
-    elementsImg.addEventListener('click', function() {
-      openPopup(popupImg);
-
-      popupImgPicture.src = element.link;
-      popupImgPicture.alt = element.name;
-      popupImgDescription.textContent = element.name;
-    })
-
-    return templateCopy;
-};
-
-// Функции для открытия(закрытия) попапов
-
-function openPopup(popup) {
-  popup.classList.add('popup_opened'); 
-  document.addEventListener('keydown', closeAllPopupsEscape);
-};
-
-function closePopup(popup) {
-  popup.classList.remove('popup_opened'); 
-  document.removeEventListener('keydown', closeAllPopupsEscape);
-};
 
 popups.forEach((popup) => {
   popup.addEventListener('click', (evt) => {
@@ -132,12 +95,6 @@ popups.forEach((popup) => {
   })
 });
 
-
-function closeAllPopupsEscape(evt) {
-  if (evt.key === 'Escape') {
-    closePopup(document.querySelector('.popup_opened'));
-  }
-};
 
 // Функции редактирования попапа формы профиля
 
@@ -156,7 +113,22 @@ function submitProfileForm(evt) {
     closePopup(profilePopup);
 }
 
+// Валидация
 
+const validationConfig = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__button',
+  inactiveButtonClass: 'popup__button_disabled',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__error_visible'
+};
+
+const editFormValidator = new FormValidator(validationConfig, profilePopupForm);
+const editCardFormValidator = new FormValidator(validationConfig, formCard);
+
+editFormValidator.enableValidation();
+editCardFormValidator.enableValidation();
 
 // Обработчики событий попапа редактирования информации о пользователе
 
@@ -171,5 +143,6 @@ formCard.addEventListener('submit', submitFormCardHandler);
 popupCardOpenBtn.addEventListener('click', () => {
   openPopup(popupCard);
 });
+
 
 
