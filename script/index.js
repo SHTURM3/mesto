@@ -6,7 +6,7 @@ import { openPopup, closePopup } from './utils.js';
 
 const popups = document.querySelectorAll('.popup');
 const profilePopup = document.querySelector('.popup_profile')
-const popupOpenBtn = document.querySelector('.profile__edit-button');
+const popupOpenProfileBtn = document.querySelector('.profile__edit-button');
 
 const profilePopupForm = document.querySelector('.popup__form_profile');
 const nameInput = document.querySelector('.popup__input_profile-name');
@@ -77,8 +77,7 @@ const initialCards = [
       name: namePlaceInput.value,
       link: linkPlaceInput.value
     });
-    popupCardSubmitBtn.disabled = true;
-    popupCardSubmitBtn.classList.add('popup__button_disabled');
+    editCardFormValidator.disableSubmitButton();
     formCard.reset();
     closePopup(popupCard);
   }
@@ -98,7 +97,7 @@ popups.forEach((popup) => {
 
 // Функции редактирования попапа формы профиля
 
-function openWindow() {
+function openProfileForm() {
     nameInput.value = name.textContent;
     jobInput.value = job.textContent;
     openPopup(profilePopup);
@@ -134,7 +133,7 @@ editCardFormValidator.enableValidation();
 
 profilePopupForm.addEventListener('submit', submitProfileForm);
 
-popupOpenBtn.addEventListener('click', openWindow);
+popupOpenProfileBtn.addEventListener('click', openProfileForm);
 
 // Обработчики событий редактирования карточек мест
 
