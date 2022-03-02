@@ -1,6 +1,7 @@
-import { Card } from './Card.js';
-import { FormValidator } from './FormValidator.js';
-import { openPopup, closePopup } from './utils.js';
+import { Card } from '../script/Card.js';
+import { FormValidator } from '../script/FormValidator.js';
+import { openPopup, closePopup } from '../script/utils.js';
+import './pages/index.css';
 
 // Переменные для формы редактирование данных пользователя
 
@@ -35,30 +36,39 @@ export const popupImg = document.querySelector('.popup-img');
 export const popupImgPicture = popupImg.querySelector('.popup-img__pic');
 export const popupImgDescription = popupImg.querySelector('.popup-img__desc');
 
+// Переменные, хранящие изображения Вебпака
+
+const arkhyz = new URL('https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg', import.meta.url);
+const chelyabinskOblast = new URL('https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg', import.meta.url);
+const ivanovo = new URL('https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg', import.meta.url);
+const kamchatka = new URL('https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg', import.meta.url);
+const kholmogorskyRayon = new URL('https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg', import.meta.url);
+const baikal = new URL('https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg', import.meta.url);
+
 const initialCards = [
     {
       name: 'Архыз',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+      link: arkhyz
     },
     {
       name: 'Челябинская область',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+      link: chelyabinskOblast
     },
     {
       name: 'Иваново',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+      link: ivanovo
     },
     {
       name: 'Камчатка',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+      link: kamchatka
     },
     {
       name: 'Холмогорский район',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+      link: kholmogorskyRayon
     },
     {
       name: 'Байкал',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+      link: baikal
     }
   ];
 

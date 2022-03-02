@@ -1,5 +1,5 @@
 import { openPopup } from './utils.js';
-import { popupImg, popupImgPicture, popupImgDescription } from './index.js';
+import { popupImg, popupImgPicture, popupImgDescription } from '../src/index.js';
 
 export class Card {
 
