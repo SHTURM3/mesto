@@ -1,17 +1,18 @@
 {
   "name": "mesto",
-  "version": "0.0.1",
-  "description": "* Описание\r * Технологии, используемые в проекте\r * Ссылки на проект\r * Дальнейшее развитие проекта",
+  "description": "Проект под названием Mesto. Сайт несет информативный, развлекательный, творческий, обучающий и вдохновляющий характер. Идея состоит в творческой деятельности пользователя на проекте: выкладывать различного рода изображения, которые привлекут своей красотой, загадочностью или чем-либо ещё. В каком-то роде название проекта соответствует его функции - показывать разные места своим пользователям и позволять им делиться своими местами.",
+  "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "build": "webpack --mode production",
+    "build": "webpack --mode=production",
     "dev": "webpack serve"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/SHTURM3/mesto.git"
   },
-  "author": "Vladimir Zakharov",
+  "keywords": [],
+  "author": "Vladimit Zakharov",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/SHTURM3/mesto/issues"
@@ -23,15 +24,19 @@
     "autoprefixer": "^10.4.2",
     "babel-loader": "^8.2.3",
     "clean-webpack-plugin": "^4.0.0",
-    "css-loader": "^6.6.0",
+    "css-loader": "^6.7.0",
     "cssnano": "^5.1.0",
     "html-webpack-plugin": "^5.5.0",
-    "mini-css-extract-plugin": "^2.5.3",
+    "mini-css-extract-plugin": "^2.6.0",
     "postcss-loader": "^6.2.1",
-    "webpack": "^5.69.1",
+    "webpack": "^5.70.0",
     "webpack-cli": "^4.9.2",
     "webpack-dev-server": "^4.7.4"
   },
+  "browsersList": [
+    "defaults",
+    "IE 7"
+  ],
   "dependencies": {
     "core-js": "^3.21.1"
   }

@@ -71,7 +71,7 @@
 
 /* Подключение стилей секции popup просмотра изображения */
 @import url('../blocks/popup-img/popup-img.css');
-@import url('../blocks/popup-img/_opened/popup-img_opened.css');
+@import url('../blocks/popup-img/_opened/popup_opened.css');
 @import url('../blocks/popup-img/__container/popup-img__container.css');
 @import url('../blocks/popup-img/__btn-close/popup-img__btn-close.css');
 @import url('../blocks/popup-img/__pic/popup-img__pic.css');
