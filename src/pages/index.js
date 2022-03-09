@@ -55,7 +55,6 @@ import './index.css';
 
   const popupProfileForm = new PopupWithForm(popupProfile, {
     submitFormCallBack: (inputValues) => {
-      console.log(inputValues);
       userInfo.setUserInfo(inputValues.name, inputValues.about);
       popupProfileForm.close();
     }
