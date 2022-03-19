@@ -4,14 +4,66 @@ import { UserInfo } from '../components/UserInfo.js';
 import { PopupWithForm } from '../components/PopupWithForm.js';
 import { PopupWithImage } from '../components/PopupWithImage.js';
 import { FormValidator } from '../components/FormValidator.js';
-import { popupImg, popupProfile, profileNameSelector, profileDescSelector, profilePopupForm, profileFormName, profileFormDescription, popupProfileOpenBtn, popupCard, cardPopupForm, popupCardOpenBtn, cardTemplateSelector, initialCards } from '../components/utils/constants.js';
+import { 
+  popupImg, 
+  popupProfile, 
+  profileNameSelector, 
+  profileDescSelector, 
+  profilePopupForm, 
+  profileFormName, 
+  profileFormDescription, 
+  popupProfileOpenBtn, 
+  popupCard, 
+  cardPopupForm, 
+  popupCardOpenBtn, 
+  cardTemplateSelector, 
+  validationConfig, 
+  popupQuestion, 
+  popupAvatar, 
+  avatarLinkSelector,
+  avatarPopupForm,
+  avatarFormLink,
+  popupAvatarOpenBtn
+} from '../components/utils/constants.js';
+import { api } from '../components/Api.js';
 import './index.css';
+
+let userId;
+
+// Функция уведомляющая о процессе загрузки данных
+
+// function renderLoading(isLoading) {
+//   if(isLoading) {
+
+//   } else {
+
+//   }
+// }
+
+// Запрос на получение данных пользователя
+
+api.getProfile()
+  .then(res => {
+    userInfo.setUserInfo(res.name, res.about, res.avatar);
+    userId = res._id
+  })
+
+// Запрос на получение данных карточек
+  
+api.getInitialCards()
+  .then(cards => {
+    cards.forEach( data => {
+      const newCard = createNewCard(data);
+      cardList.addItem(newCard);
+    })
+  })
 
 // Popup редактирования профиля
 
   const userInfo = new UserInfo({
     profileNameSelector: profileNameSelector,
-    profileDescriptionSelector: profileDescSelector
+    profileDescriptionSelector: profileDescSelector,
+    profileAvatarSelector: avatarLinkSelector
   });
 
 // Popup открытия изображения карточки 
@@ -20,8 +72,41 @@ import './index.css';
   
 // Функция создания новой карточки
 
-  function createNewCard (item) {
-    const card = new Card(item, cardTemplateSelector, handleCardClick);
+  function createNewCard (data) {
+    const card = new Card(
+      {
+        name: data.name,
+        link: data.link,
+        likes: data.likes,
+        id: data._id,
+        userId: userId,
+        ownerId: data.owner._id 
+      }, 
+      cardTemplateSelector, 
+      handleCardClick, 
+      (id) => {
+        popupQuestionForm.open();
+        popupQuestionForm.changeSubmitFormCallBack(() => {
+          api.deleteCard(id)
+            .then(() => {
+              card.deleteCard()
+            })
+        })
+      },
+      (id) => {
+        if(card.isLiked()) {
+          api.deleteLike(id)
+            .then(res => {
+              card.setLikes(res.likes)
+            })
+        } else {
+          api.addLike(id)
+            .then(res => {
+              card.setLikes(res.likes)
+            })
+        }
+      }
+    );
     const cardElement = card.getCardElement();
     return cardElement;
   }
@@ -35,7 +120,7 @@ import './index.css';
 // Переменная, отвечающая за отрисовку элементов на странице
   
   const cardList = new Section({
-    items: initialCards,
+    items: [],
     renderer: (cardItem) => {
           const newCard = createNewCard(cardItem);
           cardList.addItem(newCard);
@@ -45,9 +130,16 @@ import './index.css';
 // Переменная, отвечающая за отпрвку данных в форме редактирования карточки
 
   const popupCardForm = new PopupWithForm(popupCard, {
-    submitFormCallBack: (formValue) => {
-      const newCard = createNewCard(formValue);
-      cardList.addItem(newCard);
+    submitFormCallBack: (data) => {
+      editCardFormValidator.renderLoading(true);
+      api.addCard(data.name, data.link)
+        .then(res => {
+          const newCard = createNewCard(res);
+          cardList.addItem(newCard);
+        })
+        .finally(() => {
+          editCardFormValidator.renderLoading(false)
+        })
     }
   });
 
@@ -55,26 +147,47 @@ import './index.css';
 
   const popupProfileForm = new PopupWithForm(popupProfile, {
     submitFormCallBack: (inputValues) => {
-      userInfo.setUserInfo(inputValues.name, inputValues.about);
-      popupProfileForm.close();
+      editFormValidator.renderLoading(true);
+      const { name, about} = inputValues;
+      api.editProfile(name, about)
+        .then(res => {
+          userInfo.setUserInfo(name, about, res.avatar);
+          popupProfileForm.close();
+        })
+        .finally(() => {
+          editFormValidator.renderLoading(false)
+        })
     }
   });
 
-// Переменная, отвечающая за валидацию форм
+// Переменная, отвечающая за взаимодействие с popup с вопросом для пользователя
 
-  const validationConfig = {
-    formSelector: '.popup__form',
-    inputSelector: '.popup__input',
-    submitButtonSelector: '.popup__button',
-    inactiveButtonClass: 'popup__button_disabled',
-    inputErrorClass: 'popup__input_type_error',
-    errorClass: 'popup__error_visible'
-  };
+  const popupQuestionForm = new PopupWithForm(popupQuestion, {});
+
+// Переменная, отвечающая за замену аватара пользователя
+
+  const popupAvatarForm = new PopupWithForm(popupAvatar, {
+    submitFormCallBack: (pct) => {
+      editAvatarFormValidator.renderLoading(true);
+      const { avatar } = pct;
+      api.changeAvatar(avatar)
+        .then(res => {
+          userInfo.setUserInfo(res.name, res.about, res.avatar);
+        })
+        .finally(() => {
+          editAvatarFormValidator.renderLoading(false)
+        })
+    }
+  })
+
+// Переменные валидации форм
 
   const editFormValidator = new FormValidator(validationConfig, profilePopupForm);
   const editCardFormValidator = new FormValidator(validationConfig, cardPopupForm);
+  const editAvatarFormValidator = new FormValidator(validationConfig, avatarPopupForm);
+  
 
-// Слушатели попапа редактирования информации о пользователе
+// Слушатель кнопки попапа редактирования информации о пользователе
 
   popupProfileOpenBtn.addEventListener('click', () => {
     editFormValidator.disableSubmitButton();
@@ -84,17 +197,25 @@ import './index.css';
     popupProfileForm.open();
   });
 
-// Слушатель редактирования карточек мест
+// Слушатель кнопки редактирования карточек мест
 
   popupCardOpenBtn.addEventListener('click', () => {
     editCardFormValidator.disableSubmitButton();
     popupCardForm.open();
   });
 
+// Слушатель кнопки редактирования аватара пользователя
+
+  popupAvatarOpenBtn.addEventListener('click', () => {
+    editAvatarFormValidator.disableSubmitButton();
+    popupAvatarForm.open();
+  })
+
 // Слушатели валидации
 
   editFormValidator.enableValidation();
   editCardFormValidator.enableValidation();
+  editAvatarFormValidator.enableValidation();
 
 // Слушатель генерации карточек мест
 
@@ -108,9 +229,17 @@ import './index.css';
 
   popupProfileForm.setEventListeners();
 
+// Слушатель формы редактирования аватара профиля
+
+  popupAvatarForm.setEventListeners();
+
 // Слушатель popup изображения карточки места
 
   popupImageClass.setEventListeners();
+
+// Слушатель popup вопроса к пользователю
+
+  popupQuestionForm.setEventListeners();
 
 
 

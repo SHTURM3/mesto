@@ -6,6 +6,11 @@ export class FormValidator {
         this._buttonElement = this._form.querySelector(this._settings.submitButtonSelector);
     }
 
+    renderLoading(isLoading) {
+        if(isLoading) {
+            this._buttonElement.textContent = 'Сохранение...';
+        }
+      }
 
     _showError(inputElement, errorMessage) {
         const {inputErrorClass, errorClass} = this._settings;

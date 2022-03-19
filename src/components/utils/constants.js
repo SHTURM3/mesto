@@ -1,8 +1,40 @@
-export { popupImg, popupProfile, profileNameSelector, profileDescSelector, profilePopupForm, profileFormName, profileFormDescription, popupProfileOpenBtn, popupCard, cardPopupForm, popupCardOpenBtn, cardTemplateSelector, initialCards};
+export { 
+  popupImg, 
+  popupProfile, 
+  profileNameSelector, 
+  profileDescSelector, 
+  profilePopupForm, 
+  profileFormName, 
+  profileFormDescription, 
+  popupProfileOpenBtn, 
+  popupCard, 
+  cardPopupForm, 
+  popupCardOpenBtn, 
+  cardTemplateSelector, 
+  validationConfig, 
+  popupQuestion, 
+  popupAvatar, 
+  avatarLinkSelector,
+  avatarPopupForm,
+  avatarFormLink,
+  popupAvatarOpenBtn
+};
 
 // Переменные для popup изображения карточки места
 
 const popupImg = '.popup-img';
+
+// Переменные для popup с вопросом для пользователя
+
+const popupQuestion = '.popup_question';
+
+// Переменные для popup редактированя аватара
+
+const popupAvatar = '.popup_profile-avatar';
+const avatarLinkSelector = '.profile__avatar';
+const avatarPopupForm = document.querySelector('.popup__form_profile-avatar');
+const avatarFormLink = avatarPopupForm.querySelector('.popup__input_profile-avatar');
+const popupAvatarOpenBtn = document.querySelector('.profile__avatar-btn'); 
 
 // Переменные для формы редактирование данных пользователя
 
@@ -24,31 +56,13 @@ const popupCardOpenBtn = document.querySelector('.profile__add-button');
 
 const cardTemplateSelector = '.elements-template';
 
-// Массив с изображениями
+// Переменная, отвечающая за валидацию форм
 
-const initialCards = [
-    {
-      name: 'Архыз',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-    },
-    {
-      name: 'Челябинская область',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-    },
-    {
-      name: 'Иваново',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-    },
-    {
-      name: 'Камчатка',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-    },
-    {
-      name: 'Холмогорский район',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-    },
-    {
-      name: 'Байкал',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-    }
-  ];
+const validationConfig = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__button',
+  inactiveButtonClass: 'popup__button_disabled',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__error_visible'
+};
