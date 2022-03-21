@@ -17,17 +17,12 @@ export class PopupWithForm extends Popup {
         return this._inputValues;
     }
 
-    changeSubmitFormCallBack(newSubmitFormCallBack) {
-        this._submitFormCallBack = newSubmitFormCallBack
-    }
-
     setEventListeners() {
         super.setEventListeners();
         
         this._form.addEventListener('submit', (event) => {
             event.preventDefault();
             this._submitFormCallBack(this._getInputValues());
-            this.close();
         })
     }
 

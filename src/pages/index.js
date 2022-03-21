@@ -3,6 +3,7 @@ import { Section } from '../components/Section.js';
 import { UserInfo } from '../components/UserInfo.js';
 import { PopupWithForm } from '../components/PopupWithForm.js';
 import { PopupWithImage } from '../components/PopupWithImage.js';
+import { ConfirmationPopup } from '../components/confirmationPopup.js';
 import { FormValidator } from '../components/FormValidator.js';
 import { 
   popupImg, 
@@ -30,33 +31,21 @@ import './index.css';
 
 let userId;
 
-// Функция уведомляющая о процессе загрузки данных
+// Запрос данных пользователя и карточек на сервер
 
-// function renderLoading(isLoading) {
-//   if(isLoading) {
-
-//   } else {
-
-//   }
-// }
-
-// Запрос на получение данных пользователя
-
-api.getProfile()
-  .then(res => {
-    userInfo.setUserInfo(res.name, res.about, res.avatar);
-    userId = res._id
-  })
-
-// Запрос на получение данных карточек
-  
-api.getInitialCards()
-  .then(cards => {
+Promise.all([api.getProfile(), api.getInitialCards()])
+  .then(([userData, cards]) => {
+    userInfo.setUserInfo(userData.name, userData.about, userData.avatar);
+    userId = userData._id;
     cards.forEach( data => {
       const newCard = createNewCard(data);
       cardList.addItem(newCard);
     })
   })
+  .catch(err => {
+    console.log(err)
+  })
+
 
 // Popup редактирования профиля
 
@@ -78,18 +67,22 @@ api.getInitialCards()
         name: data.name,
         link: data.link,
         likes: data.likes,
-        id: data._id,
+        _id: data._id,
         userId: userId,
         ownerId: data.owner._id 
       }, 
       cardTemplateSelector, 
       handleCardClick, 
       (id) => {
-        popupQuestionForm.open();
-        popupQuestionForm.changeSubmitFormCallBack(() => {
+        popupQuestionForUser.open();
+        popupQuestionForUser.submitFormCallBack(() => {
           api.deleteCard(id)
             .then(() => {
-              card.deleteCard()
+              card.deleteCard();
+              popupQuestionForUser.close();
+            })
+            .catch(res => {
+              console.log(res)
             })
         })
       },
@@ -99,11 +92,13 @@ api.getInitialCards()
             .then(res => {
               card.setLikes(res.likes)
             })
+            .catch(console.log)
         } else {
           api.addLike(id)
             .then(res => {
               card.setLikes(res.likes)
             })
+            .catch(console.log)
         }
       }
     );
@@ -136,7 +131,9 @@ api.getInitialCards()
         .then(res => {
           const newCard = createNewCard(res);
           cardList.addItem(newCard);
+          popupCardForm.close();
         })
+        .catch(console.log)
         .finally(() => {
           editCardFormValidator.renderLoading(false)
         })
@@ -154,6 +151,7 @@ api.getInitialCards()
           userInfo.setUserInfo(name, about, res.avatar);
           popupProfileForm.close();
         })
+        .catch(console.log)
         .finally(() => {
           editFormValidator.renderLoading(false)
         })
@@ -162,7 +160,7 @@ api.getInitialCards()
 
 // Переменная, отвечающая за взаимодействие с popup с вопросом для пользователя
 
-  const popupQuestionForm = new PopupWithForm(popupQuestion, {});
+  const popupQuestionForUser = new ConfirmationPopup(popupQuestion);
 
 // Переменная, отвечающая за замену аватара пользователя
 
@@ -173,7 +171,9 @@ api.getInitialCards()
       api.changeAvatar(avatar)
         .then(res => {
           userInfo.setUserInfo(res.name, res.about, res.avatar);
+          popupAvatarForm.close();
         })
+        .catch(console.log)
         .finally(() => {
           editAvatarFormValidator.renderLoading(false)
         })
@@ -239,7 +239,7 @@ api.getInitialCards()
 
 // Слушатель popup вопроса к пользователю
 
-  popupQuestionForm.setEventListeners();
+  popupQuestionForUser.setEventListeners();
 
 
 
